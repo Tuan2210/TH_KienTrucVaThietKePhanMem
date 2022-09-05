@@ -1,4 +1,4 @@
-package data;
+package problem_queue;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;

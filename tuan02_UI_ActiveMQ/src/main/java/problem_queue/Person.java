@@ -1,4 +1,4 @@
-package data;
+package problem_queue;
 
 import java.io.Serializable;
 import java.util.Date;

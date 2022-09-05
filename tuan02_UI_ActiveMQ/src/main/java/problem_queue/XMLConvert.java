@@ -1,4 +1,4 @@
-package helper;
+package problem_queue;
 
 import java.io.StringReader;
 import java.io.StringWriter;
