@@ -8,8 +8,9 @@ import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.Message;
+//import javax.jms.Message;
 import javax.jms.MessageProducer;
+import javax.jms.ObjectMessage;
 import javax.jms.Session;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -25,8 +26,7 @@ public class Frm_QueueSender extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
 	private JFrame frame;
-	private JTextField txtSender1;
-//	private JTextField txtSender2;
+	private JTextField txtMSSV, txtHoTen, txtNgaySinh;
 	private JButton btnSend;
 
 	/**
@@ -63,36 +63,46 @@ public class Frm_QueueSender extends JPanel implements ActionListener{
 		frame.getContentPane().setBackground(Color.cyan);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblSender1 = new JLabel("Sender 1:");
-		lblSender1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		lblSender1.setBounds(32, 27, 62, 14);
-		frame.getContentPane().add(lblSender1);
+		JLabel lblMSSV = new JLabel("MSSV:");
+		lblMSSV.setBounds(32, 27, 62, 14);
+		frame.getContentPane().add(lblMSSV);
 		
-//		JLabel lblSender2 = new JLabel("Sender 2:");
-//		lblSender2.setBounds(32, 107, 62, 14);
-//		frame.getContentPane().add(lblSender2);
+		txtMSSV = new JTextField();
+		txtMSSV.setBounds(105, 24, 280, 20);
+		frame.getContentPane().add(txtMSSV);
+		txtMSSV.setColumns(10);
 		
-		txtSender1 = new JTextField();
-		txtSender1.setBounds(105, 24, 280, 20);
-		frame.getContentPane().add(txtSender1);
-		txtSender1.setColumns(10);
+		JLabel lblHoTen = new JLabel("Họ tên:");
+		lblHoTen.setBounds(32, 70, 62, 14);
+		frame.getContentPane().add(lblHoTen);
+
+		txtHoTen = new JTextField();
+		txtHoTen.setBounds(105, 67, 280, 20);
+		frame.getContentPane().add(txtHoTen);
+		txtHoTen.setColumns(10);
 		
-//		txtSender2 = new JTextField();
-//		txtSender2.setBounds(105, 104, 280, 20);
-//		frame.getContentPane().add(txtSender2);
-//		txtSender2.setColumns(10);
+		JLabel lblNgaySinh = new JLabel("Ngày sinh:");
+		lblNgaySinh.setBounds(32, 118, 62, 14);
+		frame.getContentPane().add(lblNgaySinh);
 		
-		btnSend = new JButton("SEND");
+		txtNgaySinh = new JTextField();
+		txtNgaySinh.setColumns(10);
+		txtNgaySinh.setBounds(105, 115, 280, 20);
+		frame.getContentPane().add(txtNgaySinh);
+		
+		btnSend = new JButton("GỬI");
+		btnSend.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSend.setBounds(180, 200, 89, 23);
 		frame.getContentPane().add(btnSend);
 		
-		txtSender1.addActionListener(this);
-//		txtSender2.addActionListener(this);
+		txtMSSV.addActionListener(this);
+		txtHoTen.addActionListener(this);
+		txtNgaySinh.addActionListener(this);
 		btnSend.addActionListener(this);
 		
 	}
 	
-	public void sendData(String txtData) throws NamingException, JMSException, JAXBException {
+	public void sendData(String txtMSSV, String txtHoTen, String txtNgaySinh) throws NamingException, JMSException, JAXBException {
 		//config environment for JMS
 		BasicConfigurator.configure();
 		//config environment for JNDI
@@ -117,32 +127,37 @@ public class Frm_QueueSender extends JPanel implements ActionListener{
 		/*transaction*/false,
 		/*ACK*/Session.AUTO_ACKNOWLEDGE
 		);
+		
 		//create producer
 		MessageProducer producer = session.createProducer(destination);
-		//create text message
-		Message msg=session.createTextMessage(""+txtData);
-		producer.send(msg);
-//		Person p=new Person(1001, "Thân Thị Đẹt", new Date());
-//		String xml=new XMLConvert<Person>(p).object2XML(p);
-//		msg=session.createTextMessage(xml);
+//		//create text message
+//		Message msg=session.createTextMessage(""+txtData);
 //		producer.send(msg);
-//		//shutdown connection
-//		session.close();con.close();
-////		System.out.println("Finished sender"); 
+		
+		Student s=new Student(txtMSSV, txtHoTen, txtNgaySinh);
+		
+		//send text mess
+//		String xml=new XMLConvert<Student>(s).object2XML(s);
+//		Message msg=session.createTextMessage(xml);
+//		producer.send(msg);
+		
+		//sned obj mess
+		ObjectMessage objectMessage = session.createObjectMessage(s);
+		producer.send(objectMessage);
+		
+		//shutdown connection
+		session.close();con.close();
+		System.out.println("Đã gửi: " +s.getMssv() +", " +s.getHoTen() +", " +s.getNgaySinh());
 	}
 
 	@SuppressWarnings("static-access")
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(btnSend)) {
-			if(txtSender1.getText().equals(""))
+			if(txtMSSV.getText().equals("") || txtHoTen.getText().equals("") || txtNgaySinh.getText().equals(""))
 				JOptionPane.showMessageDialog(frame, "Vui lòng nhập thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
 			else {
 				try {
-					sendData(txtSender1.getText());
-					System.out.println("Mess is sent: " +txtSender1.getText());
-					
-//					sendData(txtSender2.getText());
-//					System.out.println("\nMess 2 is sent!");
+					sendData(txtMSSV.getText(), txtHoTen.getText(), txtNgaySinh.getText());
 				} catch (NamingException e1) {
 					e1.printStackTrace();
 				} catch (JMSException e1) {
@@ -157,5 +172,4 @@ public class Frm_QueueSender extends JPanel implements ActionListener{
 
 		}
 	}
-	
 }

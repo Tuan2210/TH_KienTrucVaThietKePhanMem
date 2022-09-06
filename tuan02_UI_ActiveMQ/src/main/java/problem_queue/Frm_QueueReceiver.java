@@ -7,14 +7,15 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
-import javax.jms.ObjectMessage;
+//import javax.jms.ObjectMessage;
 import javax.jms.Session;
-import javax.jms.TextMessage;
+//import javax.jms.TextMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.swing.*;
 
+import org.apache.activemq.command.ActiveMQObjectMessage;
 import org.apache.log4j.BasicConfigurator;
 
 import java.awt.*;
@@ -26,11 +27,10 @@ public class Frm_QueueReceiver extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	private JFrame frame;
-	private JTextField txtReceiver1;
-//	private JTextField txtReceiver2;
+	private JTextField txtMSSV, txtHoTen, txtNgaySinh;
 	private JButton btnReceive;
 	
-	private String txt1;
+//	private String txt1;
 //	private String txt2;
 
 	/**
@@ -67,33 +67,44 @@ public class Frm_QueueReceiver extends JFrame implements ActionListener {
 		frame.getContentPane().setBackground(Color.green);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblSender1 = new JLabel("Receiver 1:");
-		lblSender1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		lblSender1.setBounds(32, 27, 67, 14);
-		frame.getContentPane().add(lblSender1);
+		JLabel lblMSSV = new JLabel("MSSV:");
+		lblMSSV.setBounds(32, 27, 67, 14);
+		frame.getContentPane().add(lblMSSV);
 		
-//		JLabel lblSender2 = new JLabel("Receiver 2:");
-//		lblSender2.setBounds(32, 107, 67, 14);
-//		frame.getContentPane().add(lblSender2);
+		txtMSSV = new JTextField();
+		txtMSSV.setEditable(false);
+		txtMSSV.setBounds(105, 24, 280, 20);
+		frame.getContentPane().add(txtMSSV);
+		txtMSSV.setColumns(10);
 		
-		txtReceiver1 = new JTextField();
-		txtReceiver1.setEditable(false);
-		txtReceiver1.setBounds(105, 24, 280, 20);
-		frame.getContentPane().add(txtReceiver1);
-		txtReceiver1.setColumns(10);
+		JLabel lblHoTen = new JLabel("Họ tên:");
+		lblHoTen.setBounds(32, 70, 67, 14);
+		frame.getContentPane().add(lblHoTen);
 		
-//		txtReceiver2 = new JTextField();
-//		txtReceiver2.setEditable(false);
-//		txtReceiver2.setBounds(105, 104, 280, 20);
-//		frame.getContentPane().add(txtReceiver2);
-//		txtReceiver2.setColumns(10);
+		txtHoTen = new JTextField();
+		txtHoTen.setEditable(false);
+		txtHoTen.setBounds(105, 67, 280, 20);
+		frame.getContentPane().add(txtHoTen);
+		txtHoTen.setColumns(10);
 		
-		btnReceive = new JButton("RECEIVE");
+		JLabel lblNgaySinh = new JLabel("Ngày sinh:");
+		lblNgaySinh.setBounds(32, 116, 67, 14);
+		frame.getContentPane().add(lblNgaySinh);
+		
+		txtNgaySinh = new JTextField();
+		txtNgaySinh.setEditable(false);
+		txtNgaySinh.setColumns(10);
+		txtNgaySinh.setBounds(105, 113, 280, 20);
+		frame.getContentPane().add(txtNgaySinh);
+		
+		btnReceive = new JButton("NHẬN");
+		btnReceive.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnReceive.setBounds(180, 200, 89, 23);
 		frame.getContentPane().add(btnReceive);
 		
-		txtReceiver1.addActionListener(this);
-//		txtReceiver2.addActionListener(this);
+		txtMSSV.addActionListener(this);
+		txtHoTen.addActionListener(this);
+		txtNgaySinh.addActionListener(this);
 		btnReceive.addActionListener(this);
 	}
 
@@ -118,26 +129,33 @@ public class Frm_QueueReceiver extends JFrame implements ActionListener {
 				// tạo session
 				Session session = con.createSession(/* transaction */false, /* ACK */Session.CLIENT_ACKNOWLEDGE);
 				// tạo consumer
-				MessageConsumer receiver1 = session.createConsumer(destination);
+				MessageConsumer consumer = session.createConsumer(destination);
 				// blocked-method for receiving message - sync
 				// receiver.receive();
 				// Cho receiver lắng nghe trên queue, chừng có message thì notify - async
-//				System.out.println("Tý was listened on queue...");
-				receiver1.setMessageListener(new MessageListener() {
-					
+				
+				consumer.setMessageListener(new MessageListener() {
 					// có message đến queue, phương thức này được thực thi
 					public void onMessage(Message msg) {// msg là message nhận được
 						try {
-							if (msg instanceof TextMessage) {
-								TextMessage tm = (TextMessage) msg;
-								txt1 = tm.getText();
-								System.out.println("Mess is received: " +txt1);
-								txtReceiver1.setText(txt1);
-								msg.acknowledge();// gửi tín hiệu ack
+//							if (msg instanceof TextMessage) {
+//								TextMessage tm = (TextMessage) msg;
+//								txt1 = tm.getText();
+//								msg.acknowledge();// gửi tín hiệu ack
+//							} 
+							if (msg instanceof ActiveMQObjectMessage) {
+//								ObjectMessage om = (ObjectMessage) msg;
+//								System.out.println("Đã nhận: " +om.toString());
 								
-							} else if (msg instanceof ObjectMessage) {
-								ObjectMessage om = (ObjectMessage) msg;
-								System.out.println(om);
+								ActiveMQObjectMessage mess = (ActiveMQObjectMessage) msg;
+								if(mess!=null) {
+									Student s = (Student) mess.getObject();
+									System.out.println(("Đã nhận: " +s.toString()));
+									
+									txtMSSV.setText(s.getMssv());
+									txtHoTen.setText(s.getHoTen());
+									txtNgaySinh.setText(s.getNgaySinh());
+								}
 							}
 							// others message type....
 						} catch (Exception e) {
@@ -149,22 +167,14 @@ public class Frm_QueueReceiver extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(btnReceive)) {
-//			receiveData(txtReceiver1);
-//			txtReceiver1.setText(txt1);
-			if(!txtReceiver1.equals("")) {
-				try {
-					receiveData();
-				} catch (NamingException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (JMSException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+			try {
+				receiveData();
+			} catch (NamingException e1) {
+				e1.printStackTrace();
+			} catch (JMSException e1) {
+				e1.printStackTrace();
 			}
 		}
-//		if(e.getSource().equals(txtReceiver2))
-//			txtReceiver2.setText(txt2);
 	}
 
 }
