@@ -29,11 +29,11 @@ import lombok.ToString;
 public class ChungNhan implements Serializable{
 	@Id
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "MaNV", referencedColumnName = "MaNV", insertable = false, updatable = false)
+	@JoinColumn(name = "manv", referencedColumnName = "manv", insertable = false, updatable = false)
 	private NhanVien nhanVien;
 	
 	@Id
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "MaMB", referencedColumnName = "MaMB", insertable = false, updatable = false)
+	@JoinColumn(name = "mamb", referencedColumnName = "mamb", insertable = false, updatable = false)
 	private MayBay mayBay;
 }

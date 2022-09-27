@@ -29,12 +29,12 @@ import lombok.ToString;
 public class NhanVien implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "MaNV")
-	private String maNV;
+	@Column(name = "manv")
+	private String manv;
 	
-	@Column(name = "Ten")
+	@Column(name = "ten")
 	private String ten;
 	
-	@Column(name = "Luong")
+	@Column(name = "luong")
 	private Integer luong;
 }

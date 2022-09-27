@@ -7,10 +7,10 @@ import javax.persistence.Column;
 
 public class ChungNhanPK implements Serializable{
 	@Basic
-	@Column(name = "MaNV")
+	@Column(name = "manv")
 	private String maNV;
 	
 	@Basic(optional = false)
-	@Column(name = "MaMB")
+	@Column(name = "mamb")
 	private Integer maMB;
 }

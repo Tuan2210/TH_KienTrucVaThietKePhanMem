@@ -9,32 +9,66 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
+//@Getter
+//@Setter
+//@ToString
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Builder
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Table(name = "maybay")
 public class MayBay implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "MaMB")
-	private Integer maMB;
+	@Column(name = "mamb")
+	private Integer mamb;
 	
-	@Column(name = "Loai")
+	@Column(name = "loai")
 	private String loai;
 	
-	@Column(name = "TamBay")
-	private Integer tamBay;
+	@Column(name = "tambay")
+	private Integer tambay;
+
+	public Integer getMamb() {
+		return mamb;
+	}
+
+	public void setMamb(Integer mamb) {
+		this.mamb = mamb;
+	}
+
+	public String getLoai() {
+		return loai;
+	}
+
+	public void setLoai(String loai) {
+		this.loai = loai;
+	}
+
+	public Integer getTambay() {
+		return tambay;
+	}
+
+	public void setTambay(Integer tambay) {
+		this.tambay = tambay;
+	}
+
+	public MayBay(Integer mamb, String loai, Integer tambay) {
+		super();
+		this.mamb = mamb;
+		this.loai = loai;
+		this.tambay = tambay;
+	}
+
+	public MayBay() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "MayBay [mamb=" + mamb + ", loai=" + loai + ", tambay=" + tambay + "]";
+	}
+	
 }
