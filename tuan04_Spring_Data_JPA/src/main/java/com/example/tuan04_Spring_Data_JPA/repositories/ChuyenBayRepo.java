@@ -21,4 +21,6 @@ public interface ChuyenBayRepo extends JpaRepository<ChuyenBay, String> {
 	@Query(value = "SELECT * FROM lab4_kttkpm_quanlychuyenbay_db.chuyenbay where GaDi=? and GaDen=?", nativeQuery = true)
 	public List<ChuyenBay> findChuyenBaysByGaDiVaGaDen(String gaDi, String gaDen);
 	
+	@Query(value = "SELECT count(*) FROM lab4_kttkpm_quanlychuyenbay_db.chuyenbay where GaDi=?", nativeQuery = true)
+	public Integer countChuyenBayFromGaDi(String gaDi);
 }

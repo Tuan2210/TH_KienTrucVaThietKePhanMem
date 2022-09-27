@@ -54,13 +54,20 @@ class Tuan04SpringDataJpaApplicationTests {
 //		System.out.println("///////");
 //	}
 	
+//	@Test
+//	void chuyenBayTuSgDenBmt() {
+//		System.out.println("/////// \nCâu 5: các chuyến bay xuất phát từ Sài Gòn (SGN) đi Ban Mê Thuộc (BMV)");
+//		chuyenBayImpl.chuyenBaySgDenBmt("SGN", "BMV").forEach(cb -> {
+//			System.out.println(cb.toString());
+//		});
+//		System.out.println("///////");
+//	}
+	
 	@Test
-	void chuyenBayTuSgDenBmt() {
-		System.out.println("/////// \nCâu 5: các chuyến bay xuất phát từ Sài Gòn (SGN) đi Ban Mê Thuộc (BMV)");
-		chuyenBayImpl.chuyenBaySgDenBmt("SGN", "BMV").forEach(cb -> {
-			System.out.println(cb.toString());
-		});
-		System.out.println("///////");
+	void soChuyenBayTuSG() {
+		System.out.println("/////// \nCâu 6: tổng số chuyến bay xuất phát từ Sài Gòn là " 
+							+chuyenBayImpl.countChuyenBayTuSG("SGN")
+							+"\n///////");
 	}
 
 }

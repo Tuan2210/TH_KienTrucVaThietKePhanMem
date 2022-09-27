@@ -32,5 +32,12 @@ public class ChuyenBayImpl implements ChuyenBayService {
 		return chuyenBayRepo.findChuyenBaysByGaDiVaGaDen(gaDi, gaDen);
 	}
 
+	@Override
+	public Integer countChuyenBayTuSG(String gaDi) {
+		return chuyenBayRepo.countChuyenBayFromGaDi(gaDi);
+	}
+
+	
+
 
 }
