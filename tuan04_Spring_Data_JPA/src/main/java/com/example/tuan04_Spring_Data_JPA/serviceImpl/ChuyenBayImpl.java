@@ -22,5 +22,10 @@ public class ChuyenBayImpl implements ChuyenBayService {
 		return chuyenBayRepo.findChuyenBaysByGaDen(gaDen);
 	}
 
+	@Override
+	public List<ChuyenBay> doDaiNhoHon10kVaLonHon8k() {
+		return chuyenBayRepo.findChuyenBaysByDoDai();
+	}
+
 
 }

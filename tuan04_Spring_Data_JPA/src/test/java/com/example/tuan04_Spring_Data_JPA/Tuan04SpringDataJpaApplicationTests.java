@@ -36,11 +36,20 @@ class Tuan04SpringDataJpaApplicationTests {
 //		System.out.println("///////");
 //	}
 	
+//	@Test
+//	void luongNvNhoHon10k() {
+//		System.out.println("/////// \nCâu 3: các nhân viên có lương nhỏ hơn 10,000");
+//		nhanVienImpl.luongNvNhoHon10k().forEach(nhanVien -> {
+//			System.out.println(nhanVien.toString());
+//		});
+//		System.out.println("///////");
+//	}
+	
 	@Test
-	void luongNvNhoHon10k() {
-		System.out.println("/////// \nCâu 3: các nhân viên có lương nhỏ hơn 10,000");
-		nhanVienImpl.luongNvNhoHon10k().forEach(nhanVien -> {
-			System.out.println(nhanVien.toString());
+	void doDaiCBNhoHon10kVaLonHon8k() {
+		System.out.println("/////// \nCâu 3: các chuyến bay có độ dài đường bay nhỏ hơn 10.000km và lớn hơn 8.000km");
+		chuyenBayImpl.doDaiNhoHon10kVaLonHon8k().forEach(cb -> {
+			System.out.println(cb.toString());
 		});
 		System.out.println("///////");
 	}

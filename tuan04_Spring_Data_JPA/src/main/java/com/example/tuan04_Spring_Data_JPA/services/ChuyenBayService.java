@@ -13,4 +13,7 @@ public interface ChuyenBayService {
 	//1.Cho biết các chuyến bay đi Đà Lạt (DAD)
 	public List<ChuyenBay> chuyenBayDenDAD(String gaDen);
 	
+	//4. Cho biết các chuyến bay có độ dài đường bay nhỏ hơn 10.000km và lớn hơn 8.000km
+	public List<ChuyenBay> doDaiNhoHon10kVaLonHon8k();
+	
 }
