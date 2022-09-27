@@ -9,26 +9,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
+//@Getter
+//@Setter
+//@ToString
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Builder
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Table(name = "nhanvien")
 public class NhanVien implements Serializable{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "manv")
 	private String manv;
 	
@@ -37,4 +30,45 @@ public class NhanVien implements Serializable{
 	
 	@Column(name = "luong")
 	private Integer luong;
+
+	public String getManv() {
+		return manv;
+	}
+
+	public void setManv(String manv) {
+		this.manv = manv;
+	}
+
+	public String getTen() {
+		return ten;
+	}
+
+	public void setTen(String ten) {
+		this.ten = ten;
+	}
+
+	public Integer getLuong() {
+		return luong;
+	}
+
+	public void setLuong(Integer luong) {
+		this.luong = luong;
+	}
+
+	public NhanVien(String manv, String ten, Integer luong) {
+		super();
+		this.manv = manv;
+		this.ten = ten;
+		this.luong = luong;
+	}
+
+	public NhanVien() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "NhanVien [manv=" + manv + ", ten=" + ten + ", luong=" + luong + "]";
+	}
+	
 }
