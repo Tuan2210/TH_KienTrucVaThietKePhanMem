@@ -45,10 +45,19 @@ class Tuan04SpringDataJpaApplicationTests {
 //		System.out.println("///////");
 //	}
 	
+//	@Test
+//	void doDaiCBNhoHon10kVaLonHon8k() {
+//		System.out.println("/////// \nCâu 4: các chuyến bay có độ dài đường bay nhỏ hơn 10.000km và lớn hơn 8.000km");
+//		chuyenBayImpl.doDaiNhoHon10kVaLonHon8k().forEach(cb -> {
+//			System.out.println(cb.toString());
+//		});
+//		System.out.println("///////");
+//	}
+	
 	@Test
-	void doDaiCBNhoHon10kVaLonHon8k() {
-		System.out.println("/////// \nCâu 3: các chuyến bay có độ dài đường bay nhỏ hơn 10.000km và lớn hơn 8.000km");
-		chuyenBayImpl.doDaiNhoHon10kVaLonHon8k().forEach(cb -> {
+	void chuyenBayTuSgDenBmt() {
+		System.out.println("/////// \nCâu 5: các chuyến bay xuất phát từ Sài Gòn (SGN) đi Ban Mê Thuộc (BMV)");
+		chuyenBayImpl.chuyenBaySgDenBmt("SGN", "BMV").forEach(cb -> {
 			System.out.println(cb.toString());
 		});
 		System.out.println("///////");

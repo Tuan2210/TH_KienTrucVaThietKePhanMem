@@ -27,5 +27,10 @@ public class ChuyenBayImpl implements ChuyenBayService {
 		return chuyenBayRepo.findChuyenBaysByDoDai();
 	}
 
+	@Override
+	public List<ChuyenBay> chuyenBaySgDenBmt(String gaDi, String gaDen) {
+		return chuyenBayRepo.findChuyenBaysByGaDiVaGaDen(gaDi, gaDen);
+	}
+
 
 }
