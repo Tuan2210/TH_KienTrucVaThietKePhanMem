@@ -11,4 +11,7 @@ public interface NhanVienService {
 	
 	//3. Tìm các nhân viên có lương nhỏ hơn 10,000
 	public List<NhanVien> luongNvNhoHon10k();
+	
+	//8. Cho biết tổng số lương phải trả cho các nhân viên
+	public Long tongLuongNV();
 }

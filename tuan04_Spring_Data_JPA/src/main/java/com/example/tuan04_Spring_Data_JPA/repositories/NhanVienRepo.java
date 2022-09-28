@@ -13,4 +13,7 @@ public interface NhanVienRepo extends JpaRepository<NhanVien, String>{
 	
 	@Query(value = "SELECT * FROM lab4_kttkpm_quanlychuyenbay_db.nhanvien where Luong < 10000;", nativeQuery = true)
 	public List<NhanVien> finNhanViensByLuong();
+	
+	@Query(value = "SELECT sum(Luong) FROM lab4_kttkpm_quanlychuyenbay_db.nhanvien;", nativeQuery = true)
+	public Long sumLuongNV();
 }

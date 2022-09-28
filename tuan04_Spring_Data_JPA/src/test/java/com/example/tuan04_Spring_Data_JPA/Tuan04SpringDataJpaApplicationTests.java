@@ -70,10 +70,17 @@ class Tuan04SpringDataJpaApplicationTests {
 //							+"\n///////");
 //	}
 	
+//	@Test
+//	void soMayBayBoeing() {
+//		System.out.println("/////// \nCâu 7: tổng số loại máy bay Boeing là " 
+//							+mayBayImpl.soLoaiMayBayBoeing()
+//							+"\n///////");
+//	}
+	
 	@Test
-	void soMayBayBoeing() {
-		System.out.println("/////// \nCâu 7: tổng số loại máy bay Boeing là " 
-							+mayBayImpl.soLoaiMayBayBoeing()
+	void tongLuongNv() {
+		System.out.println("/////// \nCâu 8: tổng số lương phải trả cho các nhân viên là " 
+							+nhanVienImpl.tongLuongNV() +"đ"
 							+"\n///////");
 	}
 

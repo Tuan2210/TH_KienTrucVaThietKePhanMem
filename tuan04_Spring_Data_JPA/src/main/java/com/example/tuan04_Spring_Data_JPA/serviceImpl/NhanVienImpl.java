@@ -19,5 +19,10 @@ public class NhanVienImpl implements NhanVienService{
 	public List<NhanVien> luongNvNhoHon10k() {
 		return nhanVienRepo.finNhanViensByLuong();
 	}
+
+	@Override
+	public Long tongLuongNV() {
+		return nhanVienRepo.sumLuongNV();
+	}
 	
 }
