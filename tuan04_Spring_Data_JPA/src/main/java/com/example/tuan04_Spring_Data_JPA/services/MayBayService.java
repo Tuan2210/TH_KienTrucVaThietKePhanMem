@@ -11,4 +11,7 @@ public interface MayBayService {
 	
 	//2. Cho biết các loại máy bay có tầm bay lớn hơn 10,000km
 	public List<MayBay> tamBayMBHon10kKm();
+	
+	//7. Có bao nhiêu loại máy bay Boeing
+	public Integer soLoaiMayBayBoeing();
 }

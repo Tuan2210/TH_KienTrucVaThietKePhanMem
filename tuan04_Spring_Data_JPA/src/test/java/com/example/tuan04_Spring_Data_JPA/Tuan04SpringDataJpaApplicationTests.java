@@ -63,10 +63,17 @@ class Tuan04SpringDataJpaApplicationTests {
 //		System.out.println("///////");
 //	}
 	
+//	@Test
+//	void soChuyenBayTuSG() {
+//		System.out.println("/////// \nCâu 6: tổng số chuyến bay xuất phát từ Sài Gòn là " 
+//							+chuyenBayImpl.countChuyenBayTuSG("SGN")
+//							+"\n///////");
+//	}
+	
 	@Test
-	void soChuyenBayTuSG() {
-		System.out.println("/////// \nCâu 6: tổng số chuyến bay xuất phát từ Sài Gòn là " 
-							+chuyenBayImpl.countChuyenBayTuSG("SGN")
+	void soMayBayBoeing() {
+		System.out.println("/////// \nCâu 7: tổng số loại máy bay Boeing là " 
+							+mayBayImpl.soLoaiMayBayBoeing()
 							+"\n///////");
 	}
 

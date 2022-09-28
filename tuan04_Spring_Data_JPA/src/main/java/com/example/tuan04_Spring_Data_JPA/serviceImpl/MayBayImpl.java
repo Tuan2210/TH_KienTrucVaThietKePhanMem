@@ -19,4 +19,9 @@ public class MayBayImpl implements MayBayService{
 	public List<MayBay> tamBayMBHon10kKm() {
 		return mayBayRepo.findMayBaysByTamBay();
 	}
+
+	@Override
+	public Integer soLoaiMayBayBoeing() {
+		return mayBayRepo.countMayBaysByLoaiBoeing();
+	}
 }

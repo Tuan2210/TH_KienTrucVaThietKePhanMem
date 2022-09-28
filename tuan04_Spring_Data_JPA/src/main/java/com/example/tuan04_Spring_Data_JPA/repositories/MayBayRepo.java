@@ -13,4 +13,7 @@ public interface MayBayRepo extends JpaRepository<MayBay, String>{
 	
 	@Query(value = "SELECT * FROM lab4_kttkpm_quanlychuyenbay_db.maybay where TamBay > 10000;", nativeQuery = true)
 	public List<MayBay> findMayBaysByTamBay();
+	
+	@Query(value = "SELECT count(*) FROM lab4_kttkpm_quanlychuyenbay_db.maybay where Loai like 'Boeing%';", nativeQuery = true)
+	public Integer countMayBaysByLoaiBoeing();
 }
