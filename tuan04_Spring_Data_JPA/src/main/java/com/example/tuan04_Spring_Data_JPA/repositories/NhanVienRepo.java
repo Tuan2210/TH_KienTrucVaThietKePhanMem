@@ -22,4 +22,10 @@ public interface NhanVienRepo extends JpaRepository<NhanVien, String>{
             "where m.Loai like '%Boeing%'\n" +
             "group by n.MaNV, n.Ten  ", nativeQuery = true)
 	public List<NhanVien> findMaPhiCongsLaiBoeing();
+	
+	@Query(value = " select * from nhanvien n join chungnhan c \n" +
+            "on n.MaNV = c.MaNV join maybay m on m.MaMB = c.MaMB\n" +
+            "where m.MaMB like '747'\n" +
+            "group by n.MaNV, n.Ten  ", nativeQuery = true)
+	public List<NhanVien> findPhiCongsLaiMayBayByMa();
 }

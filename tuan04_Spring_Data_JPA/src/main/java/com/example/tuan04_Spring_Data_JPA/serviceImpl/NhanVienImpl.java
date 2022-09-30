@@ -29,5 +29,10 @@ public class NhanVienImpl implements NhanVienService{
 	public List<NhanVien> timMaPhiCongLaiBoeing() {
 		return nhanVienRepo.findMaPhiCongsLaiBoeing();
 	}
+
+	@Override
+	public List<NhanVien> timPhiCongLaiMaMB747() {
+		return nhanVienRepo.findPhiCongsLaiMayBayByMa();
+	}
 	
 }

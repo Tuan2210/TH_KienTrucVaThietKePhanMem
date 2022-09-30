@@ -87,13 +87,21 @@ class Tuan04SpringDataJpaApplicationTests {
 //							+"\n///////");
 //	}
 
+//	@Test
+//	void timMaPhiCongLaiMbBoeing() {
+//		System.out.println("/////// \nCâu 9: các mã số của các phi công lái máy báy Boeing");
+//		nhanVienImpl.timMaPhiCongLaiBoeing().forEach(nv -> {
+//			System.out.println(nv.toString());
+//		});
+//		System.out.println("///////");
+//	}
+	
 	@Test
-	void timMaPhiCongLaiMbBoeing() {
-		System.out.println("/////// \nCâu 9: các mã số của các phi công lái máy báy Boeing");
-		nhanVienImpl.timMaPhiCongLaiBoeing().forEach(nv -> {
+	void timPhiCongLai747() {
+		System.out.println("/////// \nCâu 10: các nhân viên có thể lái máy bay có mã số 747");
+		nhanVienImpl.timPhiCongLaiMaMB747().forEach(nv -> {
 			System.out.println(nv.toString());
 		});
 		System.out.println("///////");
 	}
-	
 }
