@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.tuan04_Spring_Data_JPA.entities.ChungNhan;
 import com.example.tuan04_Spring_Data_JPA.entities.MayBay;
 import com.example.tuan04_Spring_Data_JPA.repositories.MayBayRepo;
 import com.example.tuan04_Spring_Data_JPA.services.MayBayService;
@@ -24,4 +25,6 @@ public class MayBayImpl implements MayBayService{
 	public Integer soLoaiMayBayBoeing() {
 		return mayBayRepo.countMayBaysByLoaiBoeing();
 	}
+
+	
 }

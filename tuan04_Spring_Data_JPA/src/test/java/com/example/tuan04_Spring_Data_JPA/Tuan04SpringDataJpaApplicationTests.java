@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+//import com.example.tuan04_Spring_Data_JPA.serviceImpl.ChungNhanImpl;
 import com.example.tuan04_Spring_Data_JPA.serviceImpl.ChuyenBayImpl;
 import com.example.tuan04_Spring_Data_JPA.serviceImpl.MayBayImpl;
 import com.example.tuan04_Spring_Data_JPA.serviceImpl.NhanVienImpl;
@@ -17,6 +18,8 @@ class Tuan04SpringDataJpaApplicationTests {
 	private MayBayImpl mayBayImpl;
 	@Autowired
 	private NhanVienImpl nhanVienImpl;
+//	@Autowired
+//	private ChungNhanImpl chungNhanImpl;
 
 //	@Test
 //	void chuyenBayDenDAD() {
@@ -77,11 +80,20 @@ class Tuan04SpringDataJpaApplicationTests {
 //							+"\n///////");
 //	}
 	
-	@Test
-	void tongLuongNv() {
-		System.out.println("/////// \nCâu 8: tổng số lương phải trả cho các nhân viên là " 
-							+nhanVienImpl.tongLuongNV() +"đ"
-							+"\n///////");
-	}
+//	@Test
+//	void tongLuongNv() {
+//		System.out.println("/////// \nCâu 8: tổng số lương phải trả cho các nhân viên là " 
+//							+nhanVienImpl.tongLuongNV() +"đ"
+//							+"\n///////");
+//	}
 
+	@Test
+	void timMaPhiCongLaiMbBoeing() {
+		System.out.println("/////// \nCâu 9: các mã số của các phi công lái máy báy Boeing");
+		nhanVienImpl.timMaPhiCongLaiBoeing().forEach(nv -> {
+			System.out.println(nv.toString());
+		});
+		System.out.println("///////");
+	}
+	
 }

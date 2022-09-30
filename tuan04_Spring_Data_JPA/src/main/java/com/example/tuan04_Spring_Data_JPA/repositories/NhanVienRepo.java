@@ -16,4 +16,10 @@ public interface NhanVienRepo extends JpaRepository<NhanVien, String>{
 	
 	@Query(value = "SELECT sum(Luong) FROM lab4_kttkpm_quanlychuyenbay_db.nhanvien;", nativeQuery = true)
 	public Long sumLuongNV();
+	
+	@Query(value = " select * from nhanvien n join chungnhan c \n" +
+            "on n.MaNV = c.MaNV join maybay m on m.MaMB = c.MaMB\n" +
+            "where m.Loai like '%Boeing%'\n" +
+            "group by n.MaNV, n.Ten  ", nativeQuery = true)
+	public List<NhanVien> findMaPhiCongsLaiBoeing();
 }

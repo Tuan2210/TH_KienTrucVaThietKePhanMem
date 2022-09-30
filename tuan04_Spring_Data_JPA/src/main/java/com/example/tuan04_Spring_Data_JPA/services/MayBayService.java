@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.tuan04_Spring_Data_JPA.entities.ChungNhan;
 import com.example.tuan04_Spring_Data_JPA.entities.MayBay;
 
 @Service
@@ -14,4 +15,6 @@ public interface MayBayService {
 	
 	//7. Có bao nhiêu loại máy bay Boeing
 	public Integer soLoaiMayBayBoeing();
+	
+	
 }

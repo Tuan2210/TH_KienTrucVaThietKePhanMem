@@ -14,4 +14,7 @@ public interface NhanVienService {
 	
 	//8. Cho biết tổng số lương phải trả cho các nhân viên
 	public Long tongLuongNV();
+	
+	//9. Cho biết mã số của các phi công lái máy báy Boeing.
+	public List<NhanVien> timMaPhiCongLaiBoeing();
 }

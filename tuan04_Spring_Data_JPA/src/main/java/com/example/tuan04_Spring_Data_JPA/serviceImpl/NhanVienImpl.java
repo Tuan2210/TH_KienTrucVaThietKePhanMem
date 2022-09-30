@@ -24,5 +24,10 @@ public class NhanVienImpl implements NhanVienService{
 	public Long tongLuongNV() {
 		return nhanVienRepo.sumLuongNV();
 	}
+
+	@Override
+	public List<NhanVien> timMaPhiCongLaiBoeing() {
+		return nhanVienRepo.findMaPhiCongsLaiBoeing();
+	}
 	
 }
