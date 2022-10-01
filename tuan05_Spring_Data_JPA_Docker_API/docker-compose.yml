@@ -1,0 +1,24 @@
+#link tạo docker-compose.yml: https://www.youtube.com/watch?v=6hMHziv0T2Y
+
+version: "3.8"
+services:
+  server:
+    build: .
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysqldb
+  mysqldb:
+    platform: linux/x86_64
+    image: mysql
+    restart: always
+    ports:
+      - "3307:3306"
+      
+    environment:
+      MYSQL_DATABASE: kttkpm_qlchuyenbay_db
+      MYSQL_USER: sa
+      MYSQL_PASSWORD: sapassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+

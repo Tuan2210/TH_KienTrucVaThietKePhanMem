@@ -15,6 +15,16 @@ public class ChuyenBayImpl implements ChuyenBayService {
 	
 	@Autowired
 	private ChuyenBayRepo chuyenBayRepo;
+	
+	@Override
+	public List<ChuyenBay> listChuyenBay() {
+		return chuyenBayRepo.findAll();
+	}
+	
+	@Override
+	public List<ChuyenBay> chuyenBayGaDen(String gaDen) {
+		return chuyenBayRepo.findChuyenBaysByGaDen(gaDen);
+	}
 
 //	@Transactional
 	@Override
@@ -36,8 +46,6 @@ public class ChuyenBayImpl implements ChuyenBayService {
 	public Integer countChuyenBayTuSG(String gaDi) {
 		return chuyenBayRepo.countChuyenBayFromGaDi(gaDi);
 	}
-
-	
 
 
 }

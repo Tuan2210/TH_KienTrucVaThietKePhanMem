@@ -11,10 +11,10 @@ import com.example.tuan05_Spring_Data_JPA_Docker_API.entities.NhanVien;
 @Repository
 public interface NhanVienRepo extends JpaRepository<NhanVien, String>{
 	
-	@Query(value = "SELECT * FROM lab4_kttkpm_quanlychuyenbay_db.nhanvien where Luong < 10000;", nativeQuery = true)
+	@Query(value = "SELECT * FROM kttkpm_qlchuyenbay_db.nhanvien where Luong < 10000;", nativeQuery = true)
 	public List<NhanVien> finNhanViensByLuong();
 	
-	@Query(value = "SELECT sum(Luong) FROM lab4_kttkpm_quanlychuyenbay_db.nhanvien;", nativeQuery = true)
+	@Query(value = "SELECT sum(Luong) FROM kttkpm_qlchuyenbay_db.nhanvien;", nativeQuery = true)
 	public Long sumLuongNV();
 	
 	@Query(value = " select * from nhanvien n join chungnhan c \n" +

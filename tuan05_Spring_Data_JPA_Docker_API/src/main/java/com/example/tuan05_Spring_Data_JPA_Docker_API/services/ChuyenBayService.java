@@ -10,6 +10,10 @@ import com.example.tuan05_Spring_Data_JPA_Docker_API.entities.ChuyenBay;
 @Service
 public interface ChuyenBayService {
 	
+	public List<ChuyenBay> listChuyenBay();
+	
+	public List<ChuyenBay> chuyenBayGaDen(String gaDen);
+	
 	//1.Cho biết các chuyến bay đi Đà Lạt (DAD)
 	public List<ChuyenBay> chuyenBayDenDAD(String gaDen);
 	
