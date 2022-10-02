@@ -11,6 +11,7 @@ import com.example.tuan05_Spring_Data_JPA_Docker_API.entities.NhanVien;
 @Repository
 public interface NhanVienRepo extends JpaRepository<NhanVien, String>{
 	
+//	@Query(value = "SELECT * FROM lab4_kttkpm_quanlychuyenbay_db.nhanvien where Luong < 10000;", nativeQuery = true)
 	@Query(value = "SELECT * FROM kttkpm_qlchuyenbay_db.nhanvien where Luong < 10000;", nativeQuery = true)
 	public List<NhanVien> finNhanViensByLuong();
 	
