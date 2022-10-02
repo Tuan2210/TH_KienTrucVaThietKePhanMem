@@ -22,10 +22,28 @@ public class ChuyenBayController {
 		return chuyenBayService.listChuyenBay();
 	}
 	
-	@GetMapping("/chuyenbay/{gaDen}")
+	@GetMapping("/chuyenbay/gaden:{gaDen}")
 	public List<ChuyenBay> findChuyenBayByGaDen(@PathVariable("gaDen") String gaden) {
-		List<ChuyenBay> chuyenBays = chuyenBayService.chuyenBayGaDen(gaden);
-		return chuyenBays;
+//		List<ChuyenBay> chuyenBays = chuyenBayService.chuyenBayGaDen(gaden);
+//		return chuyenBays;
+		return chuyenBayService.chuyenBayGaDen(gaden);
+		
+	}
+	
+	@GetMapping("/chuyenbay/8kKm<dodai<10kKm")
+	public List<ChuyenBay> findChuyenBaysByDoDai(){
+		return chuyenBayService.doDaiNhoHon10kVaLonHon8k();
+	}
+	
+	@GetMapping("/chuyenbay/xuatphat:{gaDi}-{gaDen}")
+	public List<ChuyenBay> findCBXuatPhat(@PathVariable("gaDi") String gadi, @PathVariable("gaDen") String gaden){
+		return chuyenBayService.chuyenBaySgDenBmt(gadi, gaden);
+	}
+	
+	@GetMapping("/chuyenbay/sochuyenbay:{gaDi}")
+	public Integer countChuyenBayByGaDen(@PathVariable("gaDi") String gadi) {
+		return chuyenBayService.countChuyenBayTuSG(gadi);
+		
 	}
 
 }

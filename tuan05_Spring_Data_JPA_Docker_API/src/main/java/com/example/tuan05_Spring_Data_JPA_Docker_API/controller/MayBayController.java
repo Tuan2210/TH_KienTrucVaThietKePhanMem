@@ -22,4 +22,9 @@ public class MayBayController {
 		List<MayBay> mayBays = mayBayService.tamBayMBHon10kKm();
 		return mayBays;
 	}
+	
+	@GetMapping("/maybay/somaybayBoeing")
+	public Integer countMayBayBoeig() {
+		return mayBayService.soLoaiMayBayBoeing();
+	}
 }

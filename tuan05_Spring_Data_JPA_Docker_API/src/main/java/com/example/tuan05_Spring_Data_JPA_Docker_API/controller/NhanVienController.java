@@ -18,7 +18,24 @@ public class NhanVienController {
 	
 	@GetMapping("/nhanvien/luongnhohon10k")
 	public List<NhanVien> findNvLuongNhoHon10k() {
-		List<NhanVien> nhanViens = nhanVienService.luongNvNhoHon10k();
-		return nhanViens;
+//		List<NhanVien> nhanViens = nhanVienService.luongNvNhoHon10k();
+//		return nhanViens;
+		return nhanVienService.luongNvNhoHon10k();
 	}
+	
+	@GetMapping("/nhanvien/tongluong")
+	public Long countTongLuong() {
+		return nhanVienService.tongLuongNV();
+	}
+	
+	@GetMapping("/nhanvien/phiconglaiBoeing")
+	public List<NhanVien> findPhiCongLaiBoeing() {
+		return nhanVienService.timMaPhiCongLaiBoeing();
+	}
+	
+	@GetMapping("/nhanvien/phicong/maMaybay747")
+	public List<NhanVien> findPhiCongLaiMaMayBay747() {
+		return nhanVienService.timPhiCongLaiMaMB747();
+	}
+	
 }
