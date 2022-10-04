@@ -7,13 +7,6 @@ services:
     restart: always
     ports:
       - "8081:8081"
-    activemq:
-      broker-url: tcp://localhost:61616
-    jms:
-      #false = Queue true = Topic
-      pub-sub-domain: false 
-    # Self defined queue name
-    myqueue: boot-activemq-queue
     depends_on:
       - mysqldb
   mysqldb:
