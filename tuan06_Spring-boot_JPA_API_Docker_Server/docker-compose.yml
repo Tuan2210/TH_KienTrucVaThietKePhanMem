@@ -1,0 +1,31 @@
+#link tạo docker-compose.yml: https://www.youtube.com/watch?v=6hMHziv0T2Y
+
+version: "3.8"
+services:
+  server:
+    build: .
+    restart: always
+    ports:
+      - "8081:8081"
+    activemq:
+      broker-url: tcp://localhost:61616
+    jms:
+      #false = Queue true = Topic
+      pub-sub-domain: false 
+    # Self defined queue name
+    myqueue: boot-activemq-queue
+    depends_on:
+      - mysqldb
+  mysqldb:
+    #platform: linux/x86_64
+    image: mysql
+    restart: always
+    ports:
+      - "3307:3306"
+      
+    environment:
+      MYSQL_DATABASE: kttkpm_qlchuyenbay_db
+      MYSQL_USER: sa
+      MYSQL_PASSWORD: sapassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+

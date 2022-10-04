@@ -1,0 +1,13 @@
+#link: https://programmer.group/personal-learning-series-springboot-simple-integration-activemq.html
+
+server:
+  port: 8080 # Port number
+spring:
+  activemq:
+#    broker-url: tcp://172.22.11.231:61616 ා own MQ server address, use your own
+    broker-url: tcp://localhost:61616
+  jms:
+    pub-sub-domain: false # false = Queue true = Topic
+
+# Self defined queue name
+myqueue: boot-activemq-queue
