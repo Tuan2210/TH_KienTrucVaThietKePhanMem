@@ -37,7 +37,7 @@ public class ConsumerController {
 			System.out.println("Danh sách chuyến bay đến Đà Lạt: \n" +gson.toJson(chuyenBayController.findChuyenBayByGaDen("DAD")));
 			break;
 		default:
-			System.out.println("Successful acceptance name: " + textMessage.getText());
+			System.out.println("Mess received: " +textMessage.getText());
 			break;
 		}
 		

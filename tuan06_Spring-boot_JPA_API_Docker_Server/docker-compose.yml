@@ -3,6 +3,7 @@
 version: "3.8"
 services:
   server:
+    container_name: qlchuyenbay-server-activemq-docker
     build: .
     restart: always
     ports:
@@ -11,6 +12,7 @@ services:
       - mysqldb
   mysqldb:
     #platform: linux/x86_64
+    container_name: mysqldb
     image: mysql
     restart: always
     ports:
