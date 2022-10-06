@@ -1,7 +1,29 @@
 #link tạo docker-compose.yml: https://www.youtube.com/watch?v=6hMHziv0T2Y
 
+#lệnh chạy activemq trong docker: docker run --publish 8161:8161 webcenter/activemq
+
 version: "3.8"
 services:
+  activemq:
+    container_name: activemq
+    image: webcenter/activemq:latest
+    ports:
+      # ui
+      - "8161:8161"
+      # jms
+      - "61616:61616"
+    #networks: [backing-services]
+    #volumes: ["activemq-data:/opt/activemq/conf", "activemq-data:/data/activemq", "activemq-data:/var/log/activemq"]
+    environment:
+      ACTIVEMQ_REMOVE_DEFAULT_ACCOUNT: "true"
+      ACTIVEMQ_ADMIN_LOGIN: admin
+      ACTIVEMQ_ADMIN_PASSWORD: admin
+#      ACTIVEMQ_STATIC_TOPICS: static-topic-1;static-topic-2
+#      ACTIVEMQ_STATIC_QUEUES: static-queue-1;static-queue-2;static-queue-3
+      ACTIVEMQ_ENABLED_SCHEDULER: "true"
+      ACTIVEMQ_MIN_MEMORY: 512
+      ACTIVEMQ_MAX_MEMORY: 2048
+  ###
   server:
     container_name: qlchuyenbay-server-activemq-docker
     build: .
@@ -10,6 +32,7 @@ services:
       - "8081:8081"
     depends_on:
       - mysqldb
+  ###
   mysqldb:
     #platform: linux/x86_64
     container_name: mysqldb

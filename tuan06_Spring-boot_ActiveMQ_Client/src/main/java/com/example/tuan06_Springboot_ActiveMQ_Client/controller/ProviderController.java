@@ -16,7 +16,7 @@ public class ProviderController {
 	@Resource
     private JmsMessagingTemplate jmsTemplate;
 	
-	 @RequestMapping("send")
+	 @RequestMapping("/send")
 	    public void send(String text) {
 	        //Method 1: add a message to the message queue
 	        //The Queue queue we created before is used here
