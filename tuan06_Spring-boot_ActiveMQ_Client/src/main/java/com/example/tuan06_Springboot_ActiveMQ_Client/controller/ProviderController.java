@@ -17,10 +17,10 @@ public class ProviderController {
     private JmsMessagingTemplate jmsTemplate;
 	
 	 @RequestMapping("send")
-	    public void send(String name) {
+	    public void send(String text) {
 	        //Method 1: add a message to the message queue
 	        //The Queue queue we created before is used here
-	        jmsTemplate.convertAndSend(queue, name);
+	        jmsTemplate.convertAndSend(queue, text);
 	        
 	        //Method 2: in this way, you do not need to create a queue manually. The system will create a queue named test by itself
 	        //If you use manual queue creation here, you need to write the @ EnableJms annotation to the startup class
