@@ -30,20 +30,21 @@ public class ConsumerController {
 	@JmsListener(destination = "${myqueue}")
     public void handleMessage(TextMessage textMessage) throws JMSException {
 		
-//		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//		
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		
 //		switch (textMessage.getText()) {
 //		case "http://localhost:8081/api/chuyenbay":
-//			System.out.println("Danh sách chuyến bay: \n" +gson.toJson(chuyenBayController.listChuyenBays()));
+//			System.out.println("Danh sách chuyến bay: \n" +gson.toJson(textMessage.getText()));
 //			break;
 //		case "http://localhost:8081/api/chuyenbay/gaden:DAD":
-//			System.out.println("Danh sách chuyến bay đến Đà Lạt: \n" +gson.toJson(chuyenBayController.findChuyenBayByGaDen("DAD")));
+//			System.out.println("Danh sách chuyến bay đến Đà Lạt: \n" +gson.toJson(textMessage.getText()));
 //			break;
 //		default:
 //			System.out.println("Mess received: " +textMessage.getText());
 //			break;
 //		}
-		System.out.println("Mess received: " +textMessage.getText());
+		
+		System.out.println("Mess received => " +textMessage.getText());
     }
 }
 
