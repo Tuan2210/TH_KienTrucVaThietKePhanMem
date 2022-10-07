@@ -4,7 +4,7 @@ FROM maven:latest
 RUN mkdir /qlchuyenbay-spring-jpa-api
 WORKDIR /qlchuyenbay-spring-jpa-api
 COPY . .
-EXPOSE 8081
+EXPOSE 8081 8082 8161 61616
 #port của sping-boot container
 CMD ["mvn", "spring-boot:run"]
 

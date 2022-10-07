@@ -1,6 +1,8 @@
 #link tạo docker-compose.yml: https://www.youtube.com/watch?v=6hMHziv0T2Y
 
-#lệnh chạy activemq trong docker: docker run --publish 8161:8161 webcenter/activemq
+#lệnh chạy duy nhất activemq trong docker: docker run --publish 8161:8161 webcenter/activemq
+
+#link config activemq trong docker-compose.yml: https://github.com/daggerok/spring-boot-rest-jms-activemq/blob/master/spring-jms-docker-activemq/docker-compose.yml
 
 version: "3.8"
 services:
@@ -12,10 +14,12 @@ services:
       - "8161:8161"
       # jms
       - "61616:61616"
+      #send mess
+      - "8082:8082"
     #networks: [backing-services]
     #volumes: ["activemq-data:/opt/activemq/conf", "activemq-data:/data/activemq", "activemq-data:/var/log/activemq"]
     environment:
-      ACTIVEMQ_REMOVE_DEFAULT_ACCOUNT: "true"
+#      ACTIVEMQ_REMOVE_DEFAULT_ACCOUNT: "true"
       ACTIVEMQ_ADMIN_LOGIN: admin
       ACTIVEMQ_ADMIN_PASSWORD: admin
 #      ACTIVEMQ_STATIC_TOPICS: static-topic-1;static-topic-2
@@ -23,6 +27,7 @@ services:
       ACTIVEMQ_ENABLED_SCHEDULER: "true"
       ACTIVEMQ_MIN_MEMORY: 512
       ACTIVEMQ_MAX_MEMORY: 2048
+      ACTIVEMQ_OPTS: "-Xms2g -Xmx3g"
   ###
   server:
     container_name: qlchuyenbay-server-activemq-docker
