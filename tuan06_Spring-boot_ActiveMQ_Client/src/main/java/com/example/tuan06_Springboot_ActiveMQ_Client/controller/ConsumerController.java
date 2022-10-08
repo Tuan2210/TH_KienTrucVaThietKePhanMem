@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+//@ComponentScan({"com.example.tuan06_Springboot_JPA_API_Docker_Server.controller"})
 @Component
-@ComponentScan({"com.example.tuan06_Springboot_JPA_API_Docker_Server.controller"})
 public class ConsumerController {
 	
 	@JmsListener(destination = "${myqueue}")

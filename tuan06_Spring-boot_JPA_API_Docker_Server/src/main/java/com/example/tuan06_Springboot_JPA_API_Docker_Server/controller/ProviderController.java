@@ -30,9 +30,6 @@ public class ProviderController {
 	public void send(String text) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		
-		//Method 1: add a message to the message queue
-		//The Queue queue we created before is used here
-
 		switch (text) {
 		case "http://localhost:8081/api/chuyenbay":
 			jmsTemplate.convertAndSend(queue, "Danh sách các chuyến bay: \n" +gson.toJson(chuyenBayController.listChuyenBays()));
@@ -44,7 +41,8 @@ public class ProviderController {
 			jmsTemplate.convertAndSend(queue, text);
 			break;
 		}
-
+		//Method 1: add a message to the message queue
+		//The Queue queue we created before is used here
 
 		////
 		//Method 2: in this way, you do not need to create a queue manually. The system will create a queue named test by itself
