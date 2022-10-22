@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,9 +24,6 @@ public class RestTemplateController {
 
 	@Autowired
 	private RestTemplate restTemplate;
-	
-	@Autowired
-	private NguoiDungController nguoiDungController;
 	
 	Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	
@@ -57,9 +55,13 @@ public class RestTemplateController {
 	}
 	
 	@PostMapping("/nguoidung/add")
-	public Object createUserObj(@RequestBody NguoiDung_User object) {
-		Object userObj = nguoiDungController.createUser(object);
-		System.out.println("Đã thêm người dùng-user:\n" +gson.toJson(userObj));
-		return userObj;
+	public void createUserObj() {
+//		NguoiDung_User nguoiDung_User = new NguoiDung_User("ND05", "John Constantine", "1974");
+//		NguoiDung_User createUser = restTemplate.postForObject("http://localhost:8081/api/nguoidung/add", nguoiDung_User, NguoiDung_User.class);
+		
+		NguoiDung_User nguoiDung_User = new NguoiDung_User("ND06", "John Connor", "1984");
+		ResponseEntity<NguoiDung_User> createUser = restTemplate.postForEntity("http://localhost:8081/api/nguoidung/add", nguoiDung_User, NguoiDung_User.class);
+
+		System.out.println("Đã thêm người dùng-user:\n" +gson.toJson(createUser));
 	}
 }
