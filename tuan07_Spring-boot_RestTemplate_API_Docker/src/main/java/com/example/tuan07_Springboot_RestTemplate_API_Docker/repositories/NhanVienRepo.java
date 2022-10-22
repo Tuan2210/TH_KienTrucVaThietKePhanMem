@@ -11,11 +11,11 @@ import com.example.tuan07_Springboot_RestTemplate_API_Docker.entities.NhanVien;
 @Repository
 public interface NhanVienRepo extends JpaRepository<NhanVien, String>{
 	
-	@Query(value = "SELECT * FROM lab4_kttkpm_quanlychuyenbay_db.nhanvien where Luong < 10000;", nativeQuery = true)
+	@Query(value = "SELECT * FROM nhanvien where Luong < 10000;", nativeQuery = true)
 //	@Query(value = "SELECT * FROM kttkpm_qlchuyenbay_db.nhanvien where Luong < 10000;", nativeQuery = true)
 	public List<NhanVien> findNhanViensByLuong();
 	
-	@Query(value = "SELECT sum(Luong) FROM lab4_kttkpm_quanlychuyenbay_db.nhanvien;", nativeQuery = true)
+	@Query(value = "SELECT sum(Luong) FROM nhanvien;", nativeQuery = true)
 //	@Query(value = "SELECT sum(Luong) FROM kttkpm_qlchuyenbay_db.nhanvien;", nativeQuery = true)
 	public Long sumLuongNV();
 	
