@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,14 +53,23 @@ public class NguoiDungController {
 	
 	@PutMapping("/nguoidung/{id}")
 	public ResponseEntity<NguoiDung_User> updateUser(@PathVariable("id") String mand, @RequestBody NguoiDung_User userDetails) throws Exception {
-		NguoiDung_User updateUser = nguoiDungRepo.findById(mand)
+		NguoiDung_User nguoiDung_User = nguoiDungRepo.findById(mand)
 				 								 .orElseThrow(() -> new Exception("Ko tìm thấy người dùng có id là " +mand));
-		updateUser.setTen(userDetails.getTen());
-		updateUser.setNamsinh(userDetails.getNamsinh());
-		nguoiDungRepo.save(updateUser);
+		nguoiDung_User.setTen(userDetails.getTen());
+		nguoiDung_User.setNamsinh(userDetails.getNamsinh());
+		nguoiDungRepo.save(nguoiDung_User);
 		
-		System.out.println("Cập nhật thành công thông tin người dùng có id là " +mand +":\n" +gson.toJson(updateUser));
-		return ResponseEntity.ok().body(updateUser);
+		System.out.println("Cập nhật thành công thông tin người dùng có id là " +mand +":\n" +gson.toJson(nguoiDung_User));
+		return ResponseEntity.ok().body(nguoiDung_User);
 		//sửa trong psotman dùng put, body-raw và chuyển text -> json
+	}
+	
+	@DeleteMapping("/nguoidung/{id}")
+	public ResponseEntity<?> deleteUser(@PathVariable("id") String mand) throws Exception {
+		nguoiDungRepo.findById(mand)
+				 	 .orElseThrow(() -> new Exception("Ko tìm thấy người dùng có id là " +mand));
+		nguoiDungRepo.deleteById(mand);
+		System.out.println("Xóa thành công người dùng có id là " +mand);
+		return ResponseEntity.ok().build();
 	}
 }
