@@ -50,9 +50,16 @@ public class NguoiDungController {
 		//thêm trong psotman dùng post, body-raw và chuyển text -> json
 	}
 	
-//	@PutMapping("/nguoidung/update:{id}")
-//	public NguoiDung_User updateUser(@PathVariable("id") String mand, @RequestBody NguoiDung_User user) {
-//		return nguoiDungRepo.save(nguoiDungRepo.findById(mand));
-//		//sửa trong psotman dùng post, body-raw và chuyển text -> json
-//	}
+	@PutMapping("/nguoidung/{id}")
+	public ResponseEntity<NguoiDung_User> updateUser(@PathVariable("id") String mand, @RequestBody NguoiDung_User userDetails) throws Exception {
+		NguoiDung_User updateUser = nguoiDungRepo.findById(mand)
+				 								 .orElseThrow(() -> new Exception("Ko tìm thấy người dùng có id là " +mand));
+		updateUser.setTen(userDetails.getTen());
+		updateUser.setNamsinh(userDetails.getNamsinh());
+		nguoiDungRepo.save(updateUser);
+		
+		System.out.println("Cập nhật thành công thông tin người dùng có id là " +mand +":\n" +gson.toJson(updateUser));
+		return ResponseEntity.ok().body(updateUser);
+		//sửa trong psotman dùng put, body-raw và chuyển text -> json
+	}
 }
