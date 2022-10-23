@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,7 +53,7 @@ public class RestTemplateController {
 	public List<Object> getNguoiDungById(@PathVariable("id") String mand) {
 		String url="http://localhost:8081/api/nguoidung/" +mand;
 		
-		Object[] objects = restTemplate.getForObject(url, Object[].class);
+		Object objects = restTemplate.getForObject(url, Object.class);
 		System.out.println("Người dùng " +mand +":\n" +gson.toJson(Arrays.asList(objects)));
 		return Arrays.asList(objects);
 	}
@@ -68,5 +70,19 @@ public class RestTemplateController {
 		HttpEntity<NguoiDung_User> createUser = new HttpEntity<>(nguoiDung_User);
 		System.out.println("Đã thêm người dùng-user:\n" +gson.toJson(createUser.getBody()));
 		return restTemplate.exchange("http://localhost:8081/api/nguoidung/add", HttpMethod.POST, createUser, String.class).getBody();
+	}
+	
+	@PutMapping("/nguoidung/{id}")
+	public void updateUser(@PathVariable("id") String mand, @RequestBody NguoiDung_User nguoiDung_User) {
+		String url="http://localhost:8081/api/nguoidung/" +mand;
+		
+		restTemplate.put(url, nguoiDung_User);
+	}
+	
+	@DeleteMapping("/nguoidung/{id}")
+	public void deleteUser(@PathVariable("id") String mand) {
+		String url="http://localhost:8081/api/nguoidung/" +mand;
+		
+		restTemplate.delete(url);
 	}
 }
