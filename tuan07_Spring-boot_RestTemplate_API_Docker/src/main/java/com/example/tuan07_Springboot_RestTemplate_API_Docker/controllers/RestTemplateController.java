@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,13 +57,16 @@ public class RestTemplateController {
 	}
 	
 	@PostMapping("/nguoidung/add")
-	public void createUserObj() {
+	public String createUserObj(@RequestBody NguoiDung_User nguoiDung_User) {
 //		NguoiDung_User nguoiDung_User = new NguoiDung_User("ND05", "John Constantine", "1974");
 //		NguoiDung_User createUser = restTemplate.postForObject("http://localhost:8081/api/nguoidung/add", nguoiDung_User, NguoiDung_User.class);
 		
-		NguoiDung_User nguoiDung_User = new NguoiDung_User("ND06", "John Connor", "1984");
-		ResponseEntity<NguoiDung_User> createUser = restTemplate.postForEntity("http://localhost:8081/api/nguoidung/add", nguoiDung_User, NguoiDung_User.class);
-
-		System.out.println("Đã thêm người dùng-user:\n" +gson.toJson(createUser));
+//		NguoiDung_User nguoiDung_User = new NguoiDung_User("ND06", "John Connor", "1984");
+//		ResponseEntity<NguoiDung_User> createUser = restTemplate.postForEntity("http://localhost:8081/api/nguoidung/add", nguoiDung_User, NguoiDung_User.class);
+//		System.out.println("Đã thêm người dùng-user:\n" +gson.toJson(createUser.getBody()));
+		
+		HttpEntity<NguoiDung_User> createUser = new HttpEntity<>(nguoiDung_User);
+		System.out.println("Đã thêm người dùng-user:\n" +gson.toJson(createUser.getBody()));
+		return restTemplate.exchange("http://localhost:8081/api/nguoidung/add", HttpMethod.POST, createUser, String.class).getBody();
 	}
 }
