@@ -1,4 +1,4 @@
-package iuh.se.training_kiemtra_TH.db;
+package iuh.se.training_kiemtra_TH.PassengerService;
 
 import java.util.List;
 
@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
-public class NguoiDungController {
-
-	@Autowired
-	private NguoiDungServices nguoiDungServices;
+@RequestMapping("/api/passengerservice")
+public class PassengerController {
 	
-	@GetMapping("/users")
-	public List<NguoiDung_User> listNguoiDung_Users() {
-		return nguoiDungServices.listNguoiDung_Users();
+	@Autowired
+	private PassengerService passengerService;
+	
+	@GetMapping("/passengers")
+	public List<Passenger> listPassengers() {
+		return passengerService.listPassengers();
 	}
 }
