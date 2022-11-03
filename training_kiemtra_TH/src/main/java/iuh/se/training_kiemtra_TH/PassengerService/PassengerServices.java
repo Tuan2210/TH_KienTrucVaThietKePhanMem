@@ -23,4 +23,12 @@ public class PassengerServices {
 	public Passenger addPassenger(Passenger passenger) {
 		return passengerRepository.save(passenger);
 	}
+	
+	public Passenger updatePassenger(Passenger passenger) {
+		return passengerRepository.save(passenger);
+	}
+	
+	public void deletePassenger(String passId) {
+		passengerRepository.deleteById(passId);
+	}
 }
