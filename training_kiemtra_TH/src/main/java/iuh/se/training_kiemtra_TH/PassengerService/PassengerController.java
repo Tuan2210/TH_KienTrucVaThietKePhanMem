@@ -28,17 +28,17 @@ public class PassengerController {
 		return passengerServices.listPassengers();
 	}
 	
-	@GetMapping("/passengers/{id}")
+	@GetMapping("/passenger/{id}")
 	public Optional<Passenger> findPassengerById(@PathVariable("id") String passId) {
 		return passengerServices.findPassengerById(passId);
 	}
 	
-	@PostMapping("/passengers/add")
+	@PostMapping("/passenger/add")
 	public Passenger addPassenger(@RequestBody Passenger passenger) {
 		return passengerServices.addPassenger(passenger);
 	}
 	
-	@PutMapping("/passengers/{id}")
+	@PutMapping("/passenger/{id}")
 	public void updatePassenger(@PathVariable("id") String passId, @RequestBody Passenger passengerDetails) {
 //		Optional<Passenger> passenger = passengerRepository.findById(passId);
 
@@ -50,7 +50,7 @@ public class PassengerController {
 		passengerServices.updatePassenger(passengerUpdated);
 	}
 	
-	@DeleteMapping("/passengers/{id}")
+	@DeleteMapping("/passenger/{id}")
 	public void  deletePassenger(@PathVariable("id") String passId) {
 		passengerServices.deletePassenger(passId);
 	}

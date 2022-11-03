@@ -28,7 +28,7 @@ public class Passenger implements Serializable {
 	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "passengerid")
-	private String passengerid;
+	private String passengerId;
 	
 	@Column(name = "name")
 	private String name;

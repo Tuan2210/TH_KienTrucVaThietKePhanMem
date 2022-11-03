@@ -28,7 +28,7 @@ public class Billing implements Serializable {
 	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "billid")
-	private String billid;
+	private String billId;
 	
 	@Column(name = "name")
 	private String name;
@@ -37,6 +37,6 @@ public class Billing implements Serializable {
 	private Integer price;
 	
 	@Column(name = "passengerid")
-	private String passengerid;
+	private String passengerId;
 
 }
