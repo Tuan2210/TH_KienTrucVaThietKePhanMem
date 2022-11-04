@@ -1,6 +1,7 @@
-package iuh.se.training_kiemtra_TH.PassengerService;
+package iuh.se.training_kiemtra_TH.services;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,4 +55,27 @@ public class PassengerController {
 	public void  deletePassenger(@PathVariable("id") String passId) {
 		passengerServices.deletePassenger(passId);
 	}
+	
+	////// Controller for redis-cache
+	@GetMapping("/rediscache/passengers")
+	public Map<String, Passenger> redisFindAll() {
+		return passengerServices.redisFindAll();
+	}
+	@GetMapping("/rediscache/passenger/{id}")
+	public Passenger redisFindById(@PathVariable("id") String passId) {
+		return passengerServices.redisFindById(passId);
+	}
+	@PostMapping("/rediscache/passenger/add")
+	public Passenger redisAdd(@RequestBody Passenger passenger) {
+		return passengerServices.redisAdd(passenger);
+	}
+	@PutMapping("/rediscache/passenger/{id}")
+	public void redisUpate(@PathVariable("id") String passId, @RequestBody Passenger passengerDetails) {
+		passengerServices.redisUpate(passengerDetails);
+	}
+	@DeleteMapping("/rediscache/passenger/{id}")
+	public void  redisDelete(@PathVariable("id") String passId) {
+		passengerServices.redisDelete(passId);
+	}
+		
 }

@@ -1,4 +1,4 @@
-package iuh.se.training_kiemtra_TH.BillingService;
+package iuh.se.training_kiemtra_TH.services;
 
 import java.io.Serializable;
 

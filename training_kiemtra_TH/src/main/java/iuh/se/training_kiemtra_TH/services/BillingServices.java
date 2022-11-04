@@ -1,13 +1,10 @@
-package iuh.se.training_kiemtra_TH.BillingService;
+package iuh.se.training_kiemtra_TH.services;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import iuh.se.training_kiemtra_TH.PassengerService.Passenger;
-import iuh.se.training_kiemtra_TH.services.ResponseTemplateDTO;
 
 @Service
 public class BillingServices {
@@ -23,8 +20,8 @@ public class BillingServices {
 	}
 	
 	public ResponseTemplateDTO getBillingWithPassenger(String billId) {
-//		Object objBilling = billingRepository.findById(billId);
-		Billing billing = billingRepository.findBillingById(billId);
+//		Object objBilling = billingRepository.findById(billId); //not working
+		Billing billing = billingRepository.findBillingById(billId); //use query mysql
 		
 		Passenger passenger = restTemplate.getForObject("http://localhost:8081/api/passengerservice/passenger/" +billing.getPassengerId(), Passenger.class);
 		

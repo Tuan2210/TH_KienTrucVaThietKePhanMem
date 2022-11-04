@@ -2,8 +2,6 @@ package iuh.se.training_kiemtra_TH.services;
 
 import java.io.Serializable;
 
-import iuh.se.training_kiemtra_TH.BillingService.Billing;
-import iuh.se.training_kiemtra_TH.PassengerService.Passenger;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
