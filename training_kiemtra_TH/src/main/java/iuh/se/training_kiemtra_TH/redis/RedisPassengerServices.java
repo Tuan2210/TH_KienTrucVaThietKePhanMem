@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import iuh.se.training_kiemtra_TH.services.Passenger;
 
+//link CRUD redis-cache spring-boot: https://www.youtube.com/watch?v=eYfopvusG_s&list=PLylRck1PF4D6EQxHfxfeU8nhMgrP4hrRR&index=65
+
 @Service
 public class RedisPassengerServices {
 	
