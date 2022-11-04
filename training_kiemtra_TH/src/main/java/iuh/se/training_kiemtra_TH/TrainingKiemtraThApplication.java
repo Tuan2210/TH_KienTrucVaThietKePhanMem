@@ -7,7 +7,6 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.client.RestTemplate;
 
-import iuh.se.training_kiemtra_TH.services.Billing;
 import iuh.se.training_kiemtra_TH.services.Passenger;
 
 @SpringBootApplication
