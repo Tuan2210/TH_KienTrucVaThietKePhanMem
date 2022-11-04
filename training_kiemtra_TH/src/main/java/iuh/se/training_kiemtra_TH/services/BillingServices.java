@@ -19,12 +19,21 @@ public class BillingServices {
 		return billingRepository.findAll();
 	}
 	
+	public Billing addBilling(Billing billing) {
+		return billingRepository.save(billing);
+	}
+	
 	public ResponseTemplateDTO getBillingWithPassenger(String billId) {
 //		Object objBilling = billingRepository.findById(billId); //not working
 		Billing billing = billingRepository.findBillingById(billId); //use query mysql
 		
+		//call API normal
 		Passenger passenger = restTemplate.getForObject("http://localhost:8081/api/passengerservice/passenger/" +billing.getPassengerId(), Passenger.class);
+		
+		//call API eureka-client (error not contain this URL)
+//		Passenger passenger = restTemplate.getForObject("http://training_kiemtra_TH_EurekaClient_APIGateway/api/passengerservice/passenger/" +billing.getPassengerId(), Passenger.class);
 		
 		return new ResponseTemplateDTO(billing, passenger);
 	}
+	
 }
