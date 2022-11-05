@@ -5,13 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+//import org.springframework.web.client.RestTemplate;
 
 import iuh.se.training_kiemtra_TH.services.Billing;
 import iuh.se.training_kiemtra_TH.services.BillingRepository;
 import iuh.se.training_kiemtra_TH.services.Passenger;
 import iuh.se.training_kiemtra_TH.services.PassengerRepository;
-import iuh.se.training_kiemtra_TH.services.ResponseTemplateDTO;
 
 @Service
 public class DiscoveryService {
@@ -20,8 +19,8 @@ public class DiscoveryService {
 	private BillingRepository billingRepository;
 	@Autowired
 	private PassengerRepository passengerRepository;
-	@Autowired
-	private RestTemplate restTemplate;
+//	@Autowired
+//	private RestTemplate restTemplate;
 	
 	public List<Billing> discoveryListBillings() {
 		return billingRepository.findAll();

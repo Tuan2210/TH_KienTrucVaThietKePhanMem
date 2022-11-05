@@ -2,7 +2,8 @@ package iuh.se.training_kiemtra_TH;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+//import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -11,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import iuh.se.training_kiemtra_TH.services.Passenger;
 
 @SpringBootApplication
+@EnableEurekaClient //use api-gateway
 public class TrainingKiemtraThApplication {
 	
 	@Bean

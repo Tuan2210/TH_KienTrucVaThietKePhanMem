@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import iuh.se.training_kiemtra_TH.services.Billing;
 import iuh.se.training_kiemtra_TH.services.Passenger;
-import iuh.se.training_kiemtra_TH.services.ResponseTemplateDTO;
 
 @RestController
 @RequestMapping("/api/discoveryservice")
